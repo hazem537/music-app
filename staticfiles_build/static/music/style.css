@@ -30,7 +30,7 @@ body{
     align-items:center ;
 }
 
-input[type="text"],input[type="file"]{
+input[type="text"],input[type="file"]input[type="password"]{
     background: none;
     color: var(--red);   
     text-align: center;
