@@ -4,10 +4,14 @@ from music.forms import SongForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .filters import SongFilter
+
+
 # Create your views here.
 # from background_task import background
 @login_required
 def index(request):
+
+   
     # songs =Song.objects.filter(user = request.user)
     query_set =Song.objects.filter(public = True)
     public_songs = SongFilter(request.GET, queryset=query_set)

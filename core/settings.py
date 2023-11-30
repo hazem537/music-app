@@ -20,8 +20,34 @@ FIREBASE_STORAGE_BUCKET = "music-app-84798.appspot.com"
 FIREBASE_SERVICE_ACCOUNT_KEY = 'music-app-84798-firebase-adminsdk-thx4k-66896e648f.json'
 FIREBASE_SERVICE_ACCOUNT_KEY_PATH =   BASE_DIR / FIREBASE_SERVICE_ACCOUNT_KEY
 import firebase_admin
-from firebase_admin import credentials, storage
+from firebase_admin import credentials
+import base64
+import json ,os
 
+def decode_google_credentials(encoded_string):
+    try:
+        # Add padding if needed
+        padding = '=' * (len(encoded_string) % 4)
+        padded_encoded_string = encoded_string + padding
+
+        # Decode the base64 string
+        decoded_bytes = base64.b64decode(padded_encoded_string)
+
+        # Try decoding with UTF-8
+        try:
+            decoded_string = decoded_bytes.decode('utf-8')
+        except UnicodeDecodeError:
+            # If UTF-8 decoding fails, try with 'latin-1'
+            decoded_string = decoded_bytes.decode('latin-1', errors='replace')
+
+        return decoded_string
+    except Exception as e:
+        # Handle other exceptions
+        print(f"Error decoding base64: {e}")
+        return None
+  
+encoded_credentials = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
+decoded_credentials = decode_google_credentials(encoded_string=encoded_credentials)
 cred = credentials.Certificate(str(FIREBASE_SERVICE_ACCOUNT_KEY_PATH))  
 firebase_admin.initialize_app(cred, {'storageBucket': FIREBASE_STORAGE_BUCKET})
 
@@ -48,7 +74,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 SECRET_KEY = 'django-insecure-40^@@k4mymdr@k+k#$+kka-!$td2msjl)((%70p%^*r#_i#(nc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
