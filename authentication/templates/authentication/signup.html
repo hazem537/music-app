@@ -1,0 +1,39 @@
+{% extends "music/base.html" %}
+
+{% load widget_tweaks %}
+
+
+{% block title %}Hello{% endblock title %}
+
+
+{% block content %}
+<h1> create new user </h1>
+
+<form action="" class="signUp-form"  method ="post" >
+    {% csrf_token %}
+
+    {% for field in form  %}
+<!-- <div class="form-group"> -->
+    <label>{{field.label}}</label>
+    {% if field.errors %}
+    {% render_field field class="form-control is-invalid"  %}
+
+    <div class='invalid-feedback' >
+        {{field.errors}}
+    </div>
+    {% else %}
+    {% render_field field class="form-control "  %}
+    {% if field.help_text %}
+    <small class="form-text text-muted">{{ field.help_text }}</small>
+    {% endif %}
+    {% endif %}
+   
+<!-- </div> -->
+
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+{% endblock content %}

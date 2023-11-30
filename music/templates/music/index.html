@@ -1,0 +1,43 @@
+{% extends "music/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<h1>Public Song</h1>
+<form method="get" class="d-flex justify-content-center align-items-center">
+    {% for filter_field in public_songs.form  %}
+    {% render_field filter_field class="form-control mx-1" placeholder=filter_field.label   %}
+
+    {% endfor %}
+    <input  class="btn btn-primary mx-1" id="filter" type="submit" value="Filter">
+    <i  id="clear"  class="fa-solid fa-x mx-1"></i>
+</form>
+<div class="d-flex  row justify-content-center public-songs ">
+{% for song in public_songs.qs %}
+
+{% include "music/song.html" with song=song %}
+
+{% endfor %}
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+<script>
+
+document.querySelectorAll("input").forEach(element => {
+    element.addEventListener("change" ,()=>{
+        document.getElementById("filter").click()
+    })
+});
+
+document.getElementById("clear").addEventListener("click",()=>{
+    document.querySelectorAll("input").forEach(item=>{
+        item.value =""
+    })
+    document.getElementById("filter").click()
+})
+</script>
+
+{% endblock scripts %}

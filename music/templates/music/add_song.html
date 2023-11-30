@@ -1,0 +1,21 @@
+{% extends "music/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Home{% endblock title %}
+{% block content %}
+<h1>Add Song</h1>
+<div class="d-flex w-100 justify-content-center"  >
+<form action="" method="post" enctype="multipart/form-data" class="w-50  d-flex flex-column justify-content-center align-items-center">
+{% for field in form   %}
+    {{field.label}}
+    {% render_field field class="form-control m-2"    %}
+    {{field.errors}}
+{% endfor %}
+
+    
+{% csrf_token %}
+
+    <input class="btn btn-primary" type="submit" value="Add Music">
+</form>
+</div>
+{% endblock content %}

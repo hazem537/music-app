@@ -1,0 +1,49 @@
+/* img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+} */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+}
+:root{
+    --white :#EEE2DE;
+    --light-red:#EA906C;
+    --red :#B31312;
+    --blue:#2B2A4C;
+}
+body{
+    height:100vh;
+    background-color: var(--blue);
+    color:var(--red)
+}
+
+.navbar{
+    background-color: var(--white);
+}
+.navbar-nav{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items:center ;
+}
+
+input[type="text"],input[type="file"]{
+    background: none;
+    color: var(--red);   
+    text-align: center;
+}
+input[type="text"]::placeholder{
+    text-align: center;
+    color: var(--red);
+}
+
+.public-songs ,.my-songs{
+    /* border:2px solid var(--red); */
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+    /* box-shadow: 10px 10px 10px var(--light-red) ; */
+}

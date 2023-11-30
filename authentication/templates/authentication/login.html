@@ -1,0 +1,28 @@
+{% extends "music/base.html" %}
+{% load widget_tweaks %}
+
+
+{% block title %}Hello{% endblock title %}
+
+
+{% block content %}
+<h1> Login</h1>
+<form action="" class= "signUp-form" method="post">
+    {% csrf_token %}
+    {% for field in form  %}
+    
+    <label>{{field.label}}</label>
+    {% if field.errors %}
+    {% render_field field class="form-control is-invalid"  %}
+    <div class='invalid-feedback' >
+        {{field.errors}}
+    </div>
+    {% else %}
+    {% render_field field class="form-control "  %}
+    {% endif %}
+    {% endfor %}
+
+<input type="submit" value="login" class="btn btn-primary">
+</form>
+
+{% endblock content %}

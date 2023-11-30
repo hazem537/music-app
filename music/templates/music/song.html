@@ -1,0 +1,18 @@
+
+<div class="card  col-3 m-2 p-2"  >
+    <img src="{{song.image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{song.name}}</h5>
+      <p class="card-text">{{song.singer}} -- {{song.tags}}</p>
+      <div class="d-flex justify-content-between" >
+      <button id ="audio_play_button" class="audio-button btn btn-primary" data-audio ="{{song.audio.url}}" class="btn btn-danger">Play</button>
+    {% if request.user == song.user %}
+      <a href="{% url "del-song" song.id %} " class ="btn btn-danger    "><i class="fa-solid fa-trash"></i></a>
+      {% endif %}
+    </div>
+      <!-- <audio controls >
+        <source src="{{song.audio.url}}" type="audio/mp3">
+    </audio>       -->
+   
+    </div>
+  </div>
