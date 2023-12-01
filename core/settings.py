@@ -37,6 +37,7 @@ credentials_dict = {
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-thx4k%40music-app-84798.iam.gserviceaccount.com",
     "universe_domain": "googleapis.com"
 }
+
 cred = credentials.Certificate(credentials_dict)  
 firebase_admin.initialize_app(cred, {'storageBucket': FIREBASE_STORAGE_BUCKET})
 
