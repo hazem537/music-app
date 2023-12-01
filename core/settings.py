@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 FIREBASE_STORAGE_BUCKET = "music-app-84798.appspot.com"
 FIREBASE_SERVICE_ACCOUNT_KEY = 'music-app-84798-firebase-adminsdk-thx4k-66896e648f.json'
-FIREBASE_SERVICE_ACCOUNT_KEY_PATH =   BASE_DIR / FIREBASE_SERVICE_ACCOUNT_KEY
+# FIREBASE_SERVICE_ACCOUNT_KEY_PATH =   BASE_DIR / FIREBASE_SERVICE_ACCOUNT_KEY
 import firebase_admin
 from firebase_admin import credentials
 import base64
@@ -194,3 +194,17 @@ STATIC_ROOT =os.path.join(BASE_DIR,"staticfiles_build","static")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+import os
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+
+# Get the Google Cloud credentials JSON from the environment
+credentials_json = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS_JSON')
+
+# Log the credentials (for debugging purposes)
+logging.debug(f"Google Cloud Credentials: {credentials_json}")
