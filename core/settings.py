@@ -43,13 +43,12 @@ from google.auth.transport.requests import Request
 from google.oauth2 import service_account
 try:
     # Create credentials from the dictionary
-    credentials = service_account.Credentials.from_service_account_info(credentials_dict)
+    def_credentials = service_account.Credentials.from_service_account_info(credentials_dict)
     # Check if the credentials are expired, and refresh them if needed
-    if credentials.expired:
-        credentials.refresh(Request())
+    if def_credentials.expired:
+        def_credentials.refresh(Request())
     # Set the credentials for the application
     # (This line is optional if you're not using the default credentials mechanism)
-    credentials = credentials.with_quota_project('music-app-84798')
 except exceptions.DefaultCredentialsError as e:
     print(f"Error: {e}")
 
